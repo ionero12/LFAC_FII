@@ -1,0 +1,66 @@
+begin_global
+
+int b = 10;
+int ac;
+const int h = 32;
+char string1 = "ananas";
+
+end_global
+
+begin_fct
+
+function int func1 (int x, int az) end_function
+
+function int func1 (int y, int twtw, int adad) end_function
+
+end_fct
+
+begin_class
+
+def_class clasa1 
+
+	function int metoda2 (int aaaaaaaa)
+	end_function
+
+	array int b[100];
+
+	int b;
+	int b2 = 244;
+	char nume_cl = "marius";
+
+end_defclass
+
+end_class
+
+
+main 
+
+int variabila2 = 5234;
+const int var3 = 32;
+int cchestie;
+
+while ( a )
+	cchestie = 32;
+end_while
+
+char string2 = "banana";
+
+array int nume[10];
+
+nume[2] = 4;
+
+eval( 23 + nume[2] * 3 );
+
+eval(( 1 + (5 > 4)) * 10 + 5 );
+
+for ac = 3 to b do
+	eval(0);
+end_for
+
+if ( ( 4+4 > 3 ) )
+	 nume[6] = 5;
+else
+	 nume[3] = 5;
+end_if
+
+end_main

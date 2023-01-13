@@ -1,0 +1,35 @@
+begin_global
+
+
+int x = 23;
+const int ccc;
+int x1;
+int x1;
+int x2;
+float f1 = 50;
+char s = "ana";
+
+end_global
+
+begin_fct
+
+function int testFunction(int aa, int aaa) end_function
+
+function int testFunction(int bb, float bbb) end_function
+
+function int testFunction(float dd , float ddd) end_function
+
+function int test(int ee) end_function
+
+end_fct
+
+main
+
+    int x3 = x + 2;
+	f1 = x + x2;
+	f1 = test (5);
+	x = s + f1;
+	char a = "def";
+    eval(a);
+
+end_main
