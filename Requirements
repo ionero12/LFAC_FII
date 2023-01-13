@@ -1,0 +1,105 @@
+Design an original programming language using YACC.
+
+(3.5pt)  Your language should should include
+type declarations (0.75pt):
+predefined types  ( int , float, char,  string, bool),
+array types  
+user defined data types (similar to classes in object orientated languages, but with your own syntax):
+ provide specific syntax to allow initialization and use of variables of user defined types
+provide specific syntax for accessing fields and methods
+variable declarations/definition, constant definitions, function definitions 0.25pt;
+control statements (if, for, while, etc.), assignment statements 0.25;
+assignment statements should be of the form: left_value  = expression (where left_value can be an identifier, an element of an array, or anything else specific to your language)
+
+arithmetic and boolean expressions 1.5pt
+ function calls which can have as parameters: expressions, other function calls, identifiers,
+constants,etc. 0.75pt
+
+Your language should include a  predefined function Eval(arg) (arg can be an arithmetic expression,  variable or number ) and a predefined function TypeOf(arg)
+Your programs should be structured in 4 sections: a section for global variables, a section for functions, a section for user defined data types and a special function representing the entry point of the program
+
+2) (1.5pt) create a symbol  table for every input source program in your language, which should include:
+
+a) information regarding variable or constant identifiers  ( type, value ) 0.75 pt
+
+b) information regarding function identifiers (the returned type, the type and and name of each formal parameter) - 0.75 pt
+
+ The symbol table should be printable in two files: symbol_table.txt and    symbol_table_functions.txt (for functions)
+
+ 3) (2pt) provide semantic analysis and check that:
+
+a)   any variable that appears in a program has been previously defined and any function that is
+
+called has been defined  0.25
+
+b) a variable should not be declared more than once; 0.25                                        
+
+c) all the operands in the right side of an expression must have the same type (the language should not support casting) 0.5
+
+d) the left side of an assignment has the same type as the right side (the left side can be an element of an array, an identifier etc)  0.5
+
+e) the parameters of a function call have the types from the function definition 0.5pt 
+
+
+Detailed error messages should be provided if these conditions do not hold (e.g. which variable is not defined or it is defined twice and the program line);
+
+A program in your language should not execute if there exist semantic or syntactic errors!
+
+
+4) (3pt) Implement Eval and TypeOf
+
+Implement TypeOf
+Remark: TypeOf(x + f(y)) should cause a semantic error if TypeOf(x) != TypeOf(f(y)) (see 3(c) above)
+
+In order to implement Eval, build abstract syntax trees (AST) for the arithmetic expressions in a program;
+if  type of expr  is int , for every call of the form Eval(expr) , the AST for the expression will be evaluated and the actual value of expr will be printed.
+
+Also, for every assignment instruction left_value = expr (left_value is an identifier or element of an array with int type), the AST will be evaluated and its value will be assigned to the left_value
+
+
+AST: abstract syntax tree - built during parsing of expressions
+
+abstract syntax tree for an arithmetic expression:
+
+inner nodes: operators
+leafs: operands of expressions (numbers, identifiers, vector elements, function calls etc)
+
+Ex: x+y * 5
+
+
+
+
+write a data structure representing an AST
+write a function which builds an AST:
+ buildAST(root, left_tree, right_tree, type)  
+
+root: a number, an identifier, an operator a vector element, other operands  
+
+type: an integer/ element of enum representing the root type
+
+
+if expr is expr1 op expr2 (op is an operator)
+expr.AST = buildAST(op, expr1.AST, expr2.AST, OP) //OP denotes the root type
+
+
+if expr is an identifier X
+expr.AST = buildAST(X, null, null, IDENTIFIER)
+
+
+if expr is a number n
+expr.AST = buildAST(n, null, null, NUMBER)
+
+
+if expr is other operand  
+expr.AST = buildAST( “operand”, null, null, OTHER)
+
+                (expr.AST denotes the AST corresponding to expression expr)
+
+write a function evalAST(ast) which evaluates an AST and returns an int:
+if ast is a leaf labeled with:
+ a number: return the number
+an id: return the value of the identifier
+anything else: return 0
+else (ast is a tree with the root labeled with an operator):
+evalAST for left and right tree
+combine the results according to the operation  
